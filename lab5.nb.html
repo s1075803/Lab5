@@ -1751,7 +1751,7 @@ summary {
 
 
 <!-- rnb-text-begin -->
-<p>#1. The calculated the first and third quartiles, and the interquartile of x.</p>
+<p>#1. We used the function quantile to find the five number summary of the data and then pulled out the 1st and 3rd quantiles from the output to find the IQR.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueCA8LSBjKDIuMiwgNy44LCAtNC40LCAwLjAsIC0xLjIsIDMuOSwgNC45LCAtNS43LCAtNy45LCAtNC45LCAyOC43LCA0LjkpXG5RdWFudDwtcXVhbnRpbGUoeClcblExPC1RdWFudFtbMl1dXG5RMzwtUXVhbnRbWzRdXVxuSVFSPC1RMy1RMVxuUTFcbmBgYCJ9 -->
@@ -1779,11 +1779,16 @@ Q1</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>#2</p>
+<p>#2.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucXVhcnRpbGVzPC1mdW5jdGlvbih4KXtcblF1YW50PC1xdWFudGlsZSh4KVxuUTE8LVF1YW50W1syXV1cblEzPC1RdWFudFtbNF1dXG5JUVI8LVEzLVExXG5yZXR1cm4oYyhRMT1RMSxRMz1RMyxJUVI9SVFSKSlcbn1cbnF1YXJ0aWxlcyhjKDIuMiwgNy44LCAtNC40LCAwLjAsIC0xLjIsIDMuOSwgNC45LCAtNS43LCAtNy45LCAtNC45LCAyOC43LCA0LjkpKVxuYGBgIn0= -->
-<pre class="r"><code>quartiles&lt;-function(x){
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIycgVGhpcyBmdW5jdGlvbiBjYWxjdWxhdGVzIHRoZSBmaXJzdCBhbmQgdGhpcmQgcXVhcnRpbGVzLCBhbmQgdGhlIGludGVycXVhcnRpbGUgcmFuZ2Ugb2YgYSBnaXZlbiBzYW1wbGUuXG4jJ1xuIycgQHBhcmFtIHggVGhpcyBpcyB0aGUgdmVjdG9yIGNvbnRhaW5pbmcgdGhlIHNhbXBsZVxuIydcbiMnIEByZXR1cm4gVGhlIHZlY3RvciBjb250YWluaW5nIHRoZSBmaXJzdCBhbmQgdGhpcmQgcXVhcnRpbGVzLCBhbmQgdGhlIGludGVycXVhcnRpbGUgcmFuZ2Ugb2YgdGhlIGdpdmVuIHNhbXBsZVxucXVhcnRpbGVzPC1mdW5jdGlvbih4KXtcblF1YW50PC1xdWFudGlsZSh4KVxuUTE8LVF1YW50W1syXV1cblEzPC1RdWFudFtbNF1dXG5JUVI8LVEzLVExXG5yZXR1cm4oYyhRMT1RMSxRMz1RMyxJUVI9SVFSKSlcbn1cbnF1YXJ0aWxlcyhjKDIuMiwgNy44LCAtNC40LCAwLjAsIC0xLjIsIDMuOSwgNC45LCAtNS43LCAtNy45LCAtNC45LCAyOC43LCA0LjkpKVxuYGBgIn0= -->
+<pre class="r"><code>#' This function calculates the first and third quartiles, and the interquartile range of a given sample.
+#'
+#' @param x This is the vector containing the sample
+#'
+#' @return The vector containing the first and third quartiles, and the interquartile range of the given sample
+quartiles&lt;-function(x){
 Quant&lt;-quantile(x)
 Q1&lt;-Quant[[2]]
 Q3&lt;-Quant[[4]]
@@ -1798,7 +1803,7 @@ quartiles(c(2.2, 7.8, -4.4, 0.0, -1.2, 3.9, 4.9, -5.7, -7.9, -4.9, 28.7, 4.9))</
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>#3 Yes there is one outlier since 28.7 is bigger than 19.0375 which is the upper limit.</p>
+<p>#3. Yes there is one outlier since 28.7 is bigger than 19.0375 which is the upper limit.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuUTEtMS41KklRUlxuYGBgIn0= -->
@@ -1815,9 +1820,53 @@ quartiles(c(2.2, 7.8, -4.4, 0.0, -1.2, 3.9, 4.9, -5.7, -7.9, -4.9, 28.7, 4.9))</
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<p>#4.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudHVrZXkub3V0bGllciA8LSBmdW5jdGlvbih4KXtcbiAgcXVhcnRpbGVzKHgpXG4gIE91dGxpZXIgPC0gcmVwKE5BLCBsZW5ndGgoeCkpXG4gIGZvcihpIGluIDE6bGVuZ3RoKHgpKXtcbiAgICBpZih4W2ldPFExLTEuNSpJUVIgfHwgeFtpXT5RMysxLjUqSVFSKXtcbiAgICAgIE91dGxpZXJbaV0gPC0gVFJVRVxuICAgIH1lbHNle1xuICBPdXRsaWVyW2ldIDwtIEZBTFNFXG59XG59XG5yZXR1cm4oT3V0bGllcilcbn1cbnR1a2V5Lm91dGxpZXIoYygyLjIsIDcuOCwgLTQuNCwgMC4wLCAtMS4yLCAzLjksIDQuOSwgLTUuNywgLTcuOSwgLTQuOSwgMjguNywgNC45KSlcbmBgYCJ9 -->
+<pre class="r"><code>tukey.outlier &lt;- function(x){
+  quartiles(x)
+  Outlier &lt;- rep(NA, length(x))
+  for(i in 1:length(x)){
+    if(x[i]&lt;Q1-1.5*IQR || x[i]&gt;Q3+1.5*IQR){
+      Outlier[i] &lt;- TRUE
+    }else{
+  Outlier[i] &lt;- FALSE
+}
+}
+return(Outlier)
+}
+tukey.outlier(c(2.2, 7.8, -4.4, 0.0, -1.2, 3.9, 4.9, -5.7, -7.9, -4.9, 28.7, 4.9))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBGQUxTRSBGQUxTRSBGQUxTRSBGQUxTRSBGQUxTRSBGQUxTRSBGQUxTRSBGQUxTRSBGQUxTRSBGQUxTRSAgVFJVRSBGQUxTRVxuIn0= -->
+<pre><code> [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>#5.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGVzdC50dWtleS5vdXRsaWVyIDwtIGZ1bmN0aW9uKGZ1biA9IHR1a2V5Lm91dGxpZXIpe1xuICB4IDwtIGMoMi4yLCA3LjgsIC00LjQsIDAuMCwgLTEuMiwgMy45LCA0LjksIC01LjcsIC03LjksIC00LjksIDI4LjcsIDQuOSlcbiAgT3V0bGllclRlbXBsYXRlIDwtIGMoRkFMU0UgLEZBTFNFLCBGQUxTRSwgRkFMU0UsIEZBTFNFLCBGQUxTRSwgRkFMU0UsIEZBTFNFLCBGQUxTRSwgRkFMU0UsICBUUlVFLCBGQUxTRSlcblxuICBpZihzdW0oZnVuKHgpPT1PdXRsaWVyVGVtcGxhdGUpPT1sZW5ndGgoeCkpe1xuICAgcmV0dXJuKFRSVUUpXG4gIH1lbHNle1xuICAgIHJldHVybihGQUxTRSlcbn1cbn1cbnRlc3QudHVrZXkub3V0bGllcih0dWtleS5vdXRsaWVyKVxuYGBgIn0= -->
+<pre class="r"><code>test.tukey.outlier &lt;- function(fun = tukey.outlier){
+  x &lt;- c(2.2, 7.8, -4.4, 0.0, -1.2, 3.9, 4.9, -5.7, -7.9, -4.9, 28.7, 4.9)
+  OutlierTemplate &lt;- c(FALSE ,FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,  TRUE, FALSE)
+
+  if(sum(fun(x)==OutlierTemplate)==length(x)){
+   return(TRUE)
+  }else{
+    return(FALSE)
+}
+}
+test.tukey.outlier(tukey.outlier)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFRSVUVcbiJ9 -->
+<pre><code>[1] TRUE</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKYXV0aG9yOiBKZXNzZSBCcmFnZ2VyIGFuZCBKZXR0IFZlcm5hY2kKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQojMS4gClRoZSBjYWxjdWxhdGVkIHRoZSBmaXJzdCBhbmQgdGhpcmQgcXVhcnRpbGVzLCBhbmQgdGhlIGludGVycXVhcnRpbGUgIG9mIHguCmBgYHtyfQp4IDwtIGMoMi4yLCA3LjgsIC00LjQsIDAuMCwgLTEuMiwgMy45LCA0LjksIC01LjcsIC03LjksIC00LjksIDI4LjcsIDQuOSkKUXVhbnQ8LXF1YW50aWxlKHgpClExPC1RdWFudFtbMl1dClEzPC1RdWFudFtbNF1dCklRUjwtUTMtUTEKUTEKUTMKSVFSCmBgYAojMgpgYGB7cn0KIycgVGhpcyBmdW5jdGlvbiBjYWxjdWxhdGVzIHRoZSBmaXJzdCBhbmQgdGhpcmQgcXVhcnRpbGVzLCBhbmQgdGhlIGludGVycXVhcnRpbGUgcmFuZ2Ugb2YgYSBnaXZlbiBzYW1wbGUuCiMnCiMnIEBwYXJhbSB4IFRoaXMgaXMgdGhlIHZlY3RvciBjb250YWluaW5nIHRoZSBzYW1wbGUKIycKIycgQHJldHVybiBUaGUgdmVjdG9yIGNvbnRhaW5pbmcgdGhlIGZpcnN0IGFuZCB0aGlyZCBxdWFydGlsZXMsIGFuZCB0aGUgaW50ZXJxdWFydGlsZSByYW5nZSBvZiB0aGUgZ2l2ZW4gc2FtcGxlCnF1YXJ0aWxlczwtZnVuY3Rpb24oeCl7ClF1YW50PC1xdWFudGlsZSh4KQpRMTwtUXVhbnRbWzJdXQpRMzwtUXVhbnRbWzRdXQpJUVI8LVEzLVExCnJldHVybihjKFExPVExLFEzPVEzLElRUj1JUVIpKQp9CnF1YXJ0aWxlcyhjKDIuMiwgNy44LCAtNC40LCAwLjAsIC0xLjIsIDMuOSwgNC45LCAtNS43LCAtNy45LCAtNC45LCAyOC43LCA0LjkpKQpgYGAKIzMKWWVzIHRoZXJlIGlzIG9uZSBvdXRsaWVyIHNpbmNlIDI4LjcgaXMgYmlnZ2VyIHRoYW4gMTkuMDM3NSB3aGljaCBpcyB0aGUgdXBwZXIgbGltaXQuCmBgYHtyfQpRMS0xLjUqSVFSClEzKzEuNSpJUVIKYGBgCgoK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUiBOb3RlYm9vayIKYXV0aG9yOiBKZXNzZSBCcmFnZ2VyIGFuZCBKZXR0IFZlcm5hY2kKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQojMS4gCldlIHVzZWQgdGhlIGZ1bmN0aW9uIHF1YW50aWxlIHRvIGZpbmQgdGhlIGZpdmUgbnVtYmVyIHN1bW1hcnkgb2YgdGhlIGRhdGEgYW5kIHRoZW4gcHVsbGVkIG91dCB0aGUgMXN0IGFuZCAzcmQgcXVhbnRpbGVzIGZyb20gdGhlIG91dHB1dCB0byBmaW5kIHRoZSBJUVIuIAoKYGBge3J9CnggPC0gYygyLjIsIDcuOCwgLTQuNCwgMC4wLCAtMS4yLCAzLjksIDQuOSwgLTUuNywgLTcuOSwgLTQuOSwgMjguNywgNC45KQpRdWFudDwtcXVhbnRpbGUoeCkKUTE8LVF1YW50W1syXV0KUTM8LVF1YW50W1s0XV0KSVFSPC1RMy1RMQpRMQpRMwpJUVIKYGBgCiMyLgpgYGB7cn0KIycgVGhpcyBmdW5jdGlvbiBjYWxjdWxhdGVzIHRoZSBmaXJzdCBhbmQgdGhpcmQgcXVhcnRpbGVzLCBhbmQgdGhlIGludGVycXVhcnRpbGUgcmFuZ2Ugb2YgYSBnaXZlbiBzYW1wbGUuCiMnCiMnIEBwYXJhbSB4IFRoaXMgaXMgdGhlIHZlY3RvciBjb250YWluaW5nIHRoZSBzYW1wbGUKIycKIycgQHJldHVybiBUaGUgdmVjdG9yIGNvbnRhaW5pbmcgdGhlIGZpcnN0IGFuZCB0aGlyZCBxdWFydGlsZXMsIGFuZCB0aGUgaW50ZXJxdWFydGlsZSByYW5nZSBvZiB0aGUgZ2l2ZW4gc2FtcGxlCnF1YXJ0aWxlczwtZnVuY3Rpb24oeCl7ClF1YW50PC1xdWFudGlsZSh4KQpRMTwtUXVhbnRbWzJdXQpRMzwtUXVhbnRbWzRdXQpJUVI8LVEzLVExCnJldHVybihjKFExPVExLFEzPVEzLElRUj1JUVIpKQp9CnF1YXJ0aWxlcyhjKDIuMiwgNy44LCAtNC40LCAwLjAsIC0xLjIsIDMuOSwgNC45LCAtNS43LCAtNy45LCAtNC45LCAyOC43LCA0LjkpKQpgYGAKIzMuClllcyB0aGVyZSBpcyBvbmUgb3V0bGllciBzaW5jZSAyOC43IGlzIGJpZ2dlciB0aGFuIDE5LjAzNzUgd2hpY2ggaXMgdGhlIHVwcGVyIGxpbWl0LgpgYGB7cn0KUTEtMS41KklRUgpRMysxLjUqSVFSCmBgYAojNC4KYGBge3J9CiMnIFRoaXMgZnVuY3Rpb24gdGFrZXMgYSB2ZWN0b3IgYW5kIGRldGVybWluZXMgd2hldGhlciBvciBub3QgYW4gZWxlbWVudCBvZiBhIHNldCBpcyBhbiBvdXRsaWVyIHVzaW5nIHR1a2V5J3MgcnVsZQojJwojJyBAcGFyYW0geCBhIHZlY3RvciBjb250YWluaW5nIHRoZSBzYW1wbGUgCiMnCiMnIEByZXR1cm4gYSBib29sZWFuIHZlY3RvciBjb250YWluaW5nIHdoZXRoZXIgb3Igbm90IGFuIGVsZW1lbnQgb2YgdGhlIHNhbXBsZSBpcyBhbiBvdXRsaWVyIG9yIG5vdAp0dWtleS5vdXRsaWVyIDwtIGZ1bmN0aW9uKHgpewogIHF1YXJ0aWxlcyh4KQogIE91dGxpZXIgPC0gcmVwKE5BLCBsZW5ndGgoeCkpCiAgZm9yKGkgaW4gMTpsZW5ndGgoeCkpewogICAgaWYoeFtpXTxRMS0xLjUqSVFSIHx8IHhbaV0+UTMrMS41KklRUil7CiAgICAgIE91dGxpZXJbaV0gPC0gVFJVRQogICAgfWVsc2V7CiAgT3V0bGllcltpXSA8LSBGQUxTRQp9Cn0KcmV0dXJuKE91dGxpZXIpCn0KdHVrZXkub3V0bGllcihjKDIuMiwgNy44LCAtNC40LCAwLjAsIC0xLjIsIDMuOSwgNC45LCAtNS43LCAtNy45LCAtNC45LCAyOC43LCA0LjkpKQpgYGAKCiM1LiAKYGBge3J9CiMnIFRoaXMgdGVzdHMgYW4gb3V0bGllciBmdW5jdGlvbiBhZ2FpbnN0IHRoZSB2ZWN0b3IgeCB0byBzZWUgaWYgaXQgaXMgY29ycmVjdGx5IGlkZW50aWZ5aW5nIHRoZSBvdXRsaWVycyBpbiB0aGUgdmVjdG9yCiMnCiMnIEBwYXJhbSBmdW4gaXMgdGhlIG91dGxpZXIgZnVuY3Rpb24gdGhhdCBpcyBiZWluZyB0ZXN0ZWQKIycKIycgQHJldHVybiBBIGJvb2xlYW4gdGhhdCBpcyB0cnVlIGlmIHRoZSBvdXRsaWVyIGZ1bmN0aW9uIGNvcnJlY3RseSBpZGVudGlmaWVkIHRoZSBvdXRsaWVycyBhbmQgZmFsc2UgaWYgdGhlIGZ1bmN0aW9uIGRpZCBub3QgY29ycmVjdGx5IGlkZW50aWZ5IHRoZSBvdXRsaWVycyAKdGVzdC50dWtleS5vdXRsaWVyIDwtIGZ1bmN0aW9uKGZ1biA9IHR1a2V5Lm91dGxpZXIpewogIHggPC0gYygyLjIsIDcuOCwgLTQuNCwgMC4wLCAtMS4yLCAzLjksIDQuOSwgLTUuNywgLTcuOSwgLTQuOSwgMjguNywgNC45KQogIE91dGxpZXJUZW1wbGF0ZSA8LSBjKEZBTFNFICxGQUxTRSwgRkFMU0UsIEZBTFNFLCBGQUxTRSwgRkFMU0UsIEZBTFNFLCBGQUxTRSwgRkFMU0UsIEZBTFNFLCAgVFJVRSwgRkFMU0UpCgogIGlmKHN1bShmdW4oeCk9PU91dGxpZXJUZW1wbGF0ZSk9PWxlbmd0aCh4KSl7CiAgIHJldHVybihUUlVFKQogIH1lbHNlewogICAgcmV0dXJuKEZBTFNFKQp9Cn0KdGVzdC50dWtleS5vdXRsaWVyKHR1a2V5Lm91dGxpZXIpCmBgYAoK</div>
 
 
 
