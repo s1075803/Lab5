@@ -1,9 +1,9 @@
 ---
-title: "R Notebook"
+title: "Lab 5"
 author: Jesse Bragger and Jett Vernaci
 output: html_notebook
 ---
-#1. 
+# 1. 
 We used the function quantile to find the five number summary of the data and then pulled out the 1st and 3rd quantiles from the output to find the IQR. 
 
 ```{r}
@@ -16,7 +16,7 @@ Q1
 Q3
 IQR
 ```
-#2.
+# 2.
 ```{r}
 #' This function calculates the first and third quartiles, and the interquartile range of a given sample.
 #'
@@ -24,21 +24,21 @@ IQR
 #'
 #' @return The vector containing the first and third quartiles, and the interquartile range of the given sample
 quartiles<-function(x){
-Quant<-quantile(x)
-Q1<-Quant[[2]]
-Q3<-Quant[[4]]
-IQR<-Q3-Q1
+Quant<<-quantile(x)
+Q1<<-Quant[[2]]
+Q3<<-Quant[[4]]
+IQR<<-Q3-Q1
 return(c(Q1=Q1,Q3=Q3,IQR=IQR))
 }
 quartiles(c(2.2, 7.8, -4.4, 0.0, -1.2, 3.9, 4.9, -5.7, -7.9, -4.9, 28.7, 4.9))
 ```
-#3.
+# 3.
 Yes there is one outlier since 28.7 is bigger than 19.0375 which is the upper limit.
 ```{r}
 Q1-1.5*IQR
 Q3+1.5*IQR
 ```
-#4.
+# 4.
 ```{r}
 #' This function takes a vector and determines whether or not an element of a set is an outlier using tukey's rule
 #'
@@ -48,6 +48,7 @@ Q3+1.5*IQR
 tukey.outlier <- function(x){
   quartiles(x)
   Outlier <- rep(NA, length(x))
+  
   for(i in 1:length(x)){
     if(x[i]<Q1-1.5*IQR || x[i]>Q3+1.5*IQR){
       Outlier[i] <- TRUE
@@ -60,7 +61,7 @@ return(Outlier)
 tukey.outlier(c(2.2, 7.8, -4.4, 0.0, -1.2, 3.9, 4.9, -5.7, -7.9, -4.9, 28.7, 4.9))
 ```
 
-#5. 
+# 5. 
 ```{r}
 #' This tests an outlier function against the vector x to see if it is correctly identifying the outliers in the vector
 #'
@@ -80,7 +81,7 @@ test.tukey.outlier <- function(fun = tukey.outlier){
 test.tukey.outlier(tukey.outlier)
 ```
 
-#6. 
+# 6. 
 
 ```{r}
 xnegative <- -x
@@ -88,7 +89,7 @@ tukey.outlier(xnegative)
 ```
 Since 28.7 was an outlier in x, it would make sense that -28.7 would be the outlier in -x since the outlier boundaries would just get their sign switched. 
 
-#7. 
+# 7. 
 
 ```{r}
 #' This tests an outlier function against the vector x and its negative to see if it is correctly identifying the outliers in the vectors
@@ -115,4 +116,56 @@ test.tukey.outlier <- function(fun = tukey.outlier){
 }
 ```
 
+# 8.
+Yes the tukey.outlier function passed the new set of tests since it displays TRUE for x and -x.
+```{r}
+test.tukey.outlier(tukey.outlier)
+```
+# 9.
+After multipliying x by 0.1 the bounds for the outliers were just divided by 10 therefore newx should have the same elements being outliers as x and -x.
+```{r}
+newx<-x*0.1
+newx
+quartiles(newx)
+-0.4525-1.5*0.9425
+0.4900+1.5*0.9425
+tukey.outlier(newx)
+```
+# 10.
+```{r}
+#' This tests an outlier function against the vector x, its negative, and x*0.1 to see if it is correctly identifying the outliers in each of the vectors
+#'
+#' @param fun is the outlier function that is being tested
+#'
+#' @return A boolean vector that is true if the outlier function correctly identified the outliers and false if the function did not correctly identify the outliers for x, negative x, and x*0.1
+test.tukey.outlier <- function(fun = tukey.outlier){
+  x <- c(2.2, 7.8, -4.4, 0.0, -1.2, 3.9, 4.9, -5.7, -7.9, -4.9, 28.7, 4.9)
+  xnegative<- -x
+  newx<-0.1*x
+  OutlierTemplate <- c(FALSE ,FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,  TRUE, FALSE)
+  test.result <- rep(NA,3)
+  if(sum(fun(x)==OutlierTemplate)==length(x)){
+   test.result[1]<- TRUE
+  }else{
+    test.result[1] <- FALSE
+  }
+  if(sum(fun(xnegative)==OutlierTemplate)==length(xnegative)){
+   test.result[2]<- TRUE
+  }else{
+    test.result[2] <- FALSE
+  }
+   if(sum(fun(newx)==OutlierTemplate)==length(newx)){
+   test.result[3]<- TRUE
+  }else{
+    test.result[3] <- FALSE
+  }
+  return(test.result)
+
+}
+```
+# 11.
+This shows that tukey.outlier passes the new set of tests since the entire boolean vector is true in the function output.
+```{r}
+test.tukey.outlier(tukey.outlier)
+```
 
