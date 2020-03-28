@@ -80,3 +80,39 @@ test.tukey.outlier <- function(fun = tukey.outlier){
 test.tukey.outlier(tukey.outlier)
 ```
 
+#6. 
+
+```{r}
+xnegative <- -x
+tukey.outlier(xnegative)
+```
+Since 28.7 was an outlier in x, it would make sense that -28.7 would be the outlier in -x since the outlier boundaries would just get their sign switched. 
+
+#7. 
+
+```{r}
+#' This tests an outlier function against the vector x and its negative to see if it is correctly identifying the outliers in the vectors
+#'
+#' @param fun is the outlier function that is being tested
+#'
+#' @return A boolean vector that is true if the outlier function correctly identified the outliers and false if the function did not correctly identify the outliers for both x and negative x
+test.tukey.outlier <- function(fun = tukey.outlier){
+  x <- c(2.2, 7.8, -4.4, 0.0, -1.2, 3.9, 4.9, -5.7, -7.9, -4.9, 28.7, 4.9)
+  xnegative<- -x
+  OutlierTemplate <- c(FALSE ,FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,  TRUE, FALSE)
+  test.result <- rep(NA,2)
+  if(sum(fun(x)==OutlierTemplate)==length(x)){
+   test.result[1]<- TRUE
+  }else{
+    test.result[1] <- FALSE
+  }
+  if(sum(fun(xnegative)==OutlierTemplate)==length(xnegative)){
+   test.result[2]<- TRUE
+  }else{
+    test.result[2] <- FALSE
+  }
+  return(test.result)
+}
+```
+
+
